@@ -1,41 +1,88 @@
-// C++ code
-//
-int SW=7;
-int SW1=4;
-void setup()
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+namespace WpfApp2
 {
-	pinMode(SW,INPUT);
-	pinMode(SW1,INPUT);
-	Serial.begin(9600);
-   }
-	int newData,oldData=1;
-	int data,data1=1;
-	int pushState=0;
-	int counter=0;
-	int sum=0;
-	void loop()
-	{
-	newData=digitalRead(SW);
-	if(oldData ==1 && newData ==0){
-	pushState =1;
-	counter++;
-	Serial.println(counter);
-	}
-	data=digitalRead(SW1);
-	if(data1==1 && data==0){
-	pushState=1;
-	counter--;
-	Serial.println(counter);
-	}
-	if(newData==0){
-	sum++;
-	}
-	if(sum==5){
-	counter=0;
-	Serial.println(counter);
-	sum=0;
-	}
-	delay(500);
-	oldData =newData;
-	data1=data;
+ /// <summary>
+ /// Interaction logic for MainWindow.xaml
+ /// </summary>
+ public partial class MainWindow : Window
+ {
+ public MainWindow()
+ {
+ InitializeComponent();
+ }
+ /*private void InitializeComponent()
+ {
+ throw new NotImplementedException();
+ }*/
+ private void Button_Click(object sender, RoutedEventArgs e)
+ {
+ int n;
+ int i, j, k, flag = 1;
+ int res = 0;
+ List<int> NUM = new List<int>();
+ string number = dhudw.Text;
+ bool transform = int.TryParse(dhudw.Text, out n);
+ if (dhudw.Text.Length == 0 || !transform)
+ {
+ MessageBox.Show("重新輸入!");
+ }
+ else
+ {
+ for (i = 2; i < n; i++)
+ {
+ for (j = 2; j < i; j++)
+ {
+ if (i % j == 0)
+ {
+ flag = 0;
+ break;
+ }
+ }
+ if (flag != 0 && j == i)
+ {
+ NUM.Add(i);
+ }
+ flag = 1;
+ }
+ HIWMZ.AppendText(n + "的質數為: ");
+ for (i = 0; i < NUM.Count; i++)
+ {
+ if (i == NUM.Count - 1)
+ {
+ HIWMZ.AppendText(NUM[i].ToString());
+ }
+ else
+ {
+ HIWMZ.AppendText(NUM[i].ToString() + ", ");
+ }
+ }
+ for (i = 0; i < NUM.Count; i++)
+ {
+ k = 1;
+ JOWE.AppendText(NUM[i].ToString() + "的倍數: ");
+ do
+ {
+ res = NUM[i] * k;
+ k++;
+ JOWE.AppendText(res.ToString() + " ");
+ } while (NUM[i] * k <= n);
+ JOWE.AppendText("\r\n");
+ }
+ }
+ }
+ }
 }
