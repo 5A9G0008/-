@@ -1,0 +1,41 @@
+// C++ code
+//
+int SW=7;
+int SW1=4;
+void setup()
+{
+	pinMode(SW,INPUT);
+	pinMode(SW1,INPUT);
+	Serial.begin(9600);
+   }
+	int newData,oldData=1;
+	int data,data1=1;
+	int pushState=0;
+	int counter=0;
+	int sum=0;
+	void loop()
+	{
+	newData=digitalRead(SW);
+	if(oldData ==1 && newData ==0){
+	pushState =1;
+	counter++;
+	Serial.println(counter);
+	}
+	data=digitalRead(SW1);
+	if(data1==1 && data==0){
+	pushState=1;
+	counter--;
+	Serial.println(counter);
+	}
+	if(newData==0){
+	sum++;
+	}
+	if(sum==5){
+	counter=0;
+	Serial.println(counter);
+	sum=0;
+	}
+	delay(500);
+	oldData =newData;
+	data1=data;
+}
