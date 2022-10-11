@@ -1,0 +1,15 @@
+namespace class1
+{
+    internal class program
+    {
+       static void Main(string[] args)
+        {
+            Console.WriteLine("Hello,world!");
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.Beep();
+            Console.WriteLine(25);
+            Console.ReadLine();
+            Console.Clear();
+        }
+    }
+}
